@@ -1,0 +1,10 @@
+PUT & DEELTE REQUESTS DONT WORK INT HTML FORMS-IT IS DEFAULTED TO GET.
+
+The solution to this is use something called a method override.
+we install npm method-override package.
+
+and while defining our forms we add:?_method=PUT 
+  <form class="ui form" action="/blogs/<%=blogData._id%>?_method=PUT" method="POST">
+
+Whenever the method-overrride package sees this command it submits the form to the method specified (PUT)
+in this case.

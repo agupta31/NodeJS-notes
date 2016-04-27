@@ -1,0 +1,95 @@
+Create  a brand new express from scratch
+Create a package.json using 'npm init' and add express as a dependency
+In our main app.js file,add 3 different routes:
+
+Visiting "/" should print "hi there,welcome to my assignment"
+
+Visiting "/speak/pig" should print "pig says oink "
+Visiting "/speak/cow" should print "pig says moo "
+Visiting "/speak/dog" should print "pig says woof"
+
+
+Visiting "/repeat/hello/3" should print "hello hello hello"
+Visiting "/repeat/hola/4" should print "hola hola hola hola"
+Visiting "/repeat/blah/2" should print "blah blah"
+
+
+If user visists any other routes  print: "sorry page not available"
+
+
+SOLUTION:
+var express=require("express");
+
+
+var app=express();
+
+
+//configuring routes:
+
+app.get("/",function(req,res)
+{
+ res.send("hi there welcome to my assignement");
+});
+
+
+
+app.get("/speak/:animal",function(req,res){
+ 
+var sounds={
+   pig:"oink",
+   cow:"moo",
+ dog:"woof woof",
+  cat:"meow"
+    };
+     
+var animal=req.params.animal;
+    
+res.send(animal +" says"+sounds[animal])
+ 
+});
+
+
+
+
+app.get("/repeat/:greeting/:number",function(req,res)
+{
+    var greet=req.params.greeting;
+    
+var num=req.params.number;
+   
+ var str="";
+     
+var printGreet= function(greeting,number){
+
+ while(number>0)
+{
+ str+=" "+greeting;
+ 
+  number--;
+  }
+         
+return str;
+ }(greet,num);
+      
+       
+ res.send(printGreet);
+  
+ 
+});
+
+
+
+app.get("*",function(req,res)
+{
+res.send("sorry page not found..what are you doing with your life?");
+});
+
+
+
+//start the server:
+
+
+app.listen(process.env.PORT,process.env.ID,function()
+{
+ console.log("server started");
+});

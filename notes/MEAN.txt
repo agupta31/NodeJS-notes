@@ -1,0 +1,48 @@
+data flow in mean stack:
+
+fornt end(html,css,js,angular,jquery)-this goes into the public folder.
+we ask express to user this using the command:
+app.set(express.static("public")
+
+suppose we want to make a contact list app using mean.
+
+step1)write html code
+step 2)import angular library
+step 3)setup MVC.
+
+step 4)set up node.js environment.isntall express,make package.json file.
+
+requirements: 
+ui should have a form :firstname,lastname,email,contact -text fields
+buttons:add ,remove
+functionality:
+add- adds a new contact
+remove-removes the contact
+
+data stored in mongo db database.
+Use angular to communciate with node.js to fetch data from the DB:
+HOW?
+In my angular.js:
+use $http.get("myUrl").success(function(response){
+$scope.contactList={};
+   $scope.contactList=response;//stores the data in the contact list object;
+});
+
+In my  node.js:
+
+var mongoJs=require("mongoJs");
+var db=mongoJs("contactsList",["contactsList"]);
+
+app.get("myUrl",function(req,res){
+
+     //connect to DB.
+    db.contactList.find(function(err,docs){
+     console.log(docs);
+     res.json(docs);  //docs responds to the data returned from the database.
+ })
+
+res.json(object returned from db);
+
+});
+
+

@@ -1,0 +1,93 @@
+HOW TO INCLUDE A EXTERNAL STYLESHEET:
+
+var express=require("express");
+
+var app=express();
+
+app.use(express.static("public")); //this tells express to serve my public folder which has my stylesheets.
+app.set("view engine","ejs");//this prevents us from mentioning the .ejs extension whenever we want to render
+//a .ejs page.
+
+
+app.get("/",function(req,res){
+  res.render("home");
+
+});
+
+
+
+app.get("/youfellinlovewith/:thing",function(req,res)
+{
+    var thing=req.params.thing;
+    res.render("love",{thingVar:thing})
+
+});
+
+
+app.get("/posts",function(req,res)
+{
+ var posts=[
+  {title:"post1",author:"susy"},
+
+{title:"post2",author:"akash"},
+ 
+{title:"post3",author:"nadhrel"},
+ 
+{title:"post4",author:"badhrel"}
+]
+    
+    res.render("posts",{myPosts:posts});
+    
+
+});
+
+
+
+
+app.listen(process.env.PORT,process.env.IP,function()
+{
+console.log("server started");
+})
+
+
+
+HOW TO INCLUDE HEADERS AND FOOTERS IN YOUR EJS FILES:
+
+make a directory called partials under your views folder-
+add header.ejs and footer.ejs to it:
+
+
+HEADER.EJS:
+
+<!doctype html>
+
+<html>
+  
+   <head>
+         
+ <title>My demo app</title>
+          
+<link rel="stylesheet" href="/app.css">
+  //the slash at the begining of the app.css tells express to search
+   //for this file in the root directory and not the partials directory.       
+         
+  
+   </head>
+    
+<body>
+        
+   
+
+
+
+FOOTER.EJS:
+      </body>
+   
+ 
+</html>
+
+
+On every ejs page add this line <%include partials/header%>
+and at the bottom add <%include partials/footer%>
+
+you are good to go!!!

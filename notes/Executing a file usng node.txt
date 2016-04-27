@@ -1,0 +1,25 @@
+In the command line type node<filename> it will execute whatever file you have given it.
+
+eg:
+hello.js:
+var x=function(a,b)
+{
+ return a+b;
+ }(2,3);
+ 
+ 
+
+console.log(x);
+
+
+commandLine:
+
+agupta31:~/workspace $ mkdir introToNode
+
+agupta31:~/workspace $ cd introToNode/
+
+agupta31:~/workspace/introToNode $ touch hello.js
+
+agupta31:~/workspace/introToNode $ node hello.js
+
+5

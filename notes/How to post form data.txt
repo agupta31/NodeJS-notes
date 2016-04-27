@@ -1,0 +1,132 @@
+WHEN WE POST A FORM DATA ALL THIS DATA IS ADDED TO THE REQUEST OBJECT.
+
+npm install body-parser --save :this installs the body parser package which tells express to explicitly
+convert the request body and turn it into a jS object.We will use body parser anytime there is a form
+and we need to extract its info at the server side.
+
+steps:
+setup a post route
+
+if you want to submit data using a form then add this in the page where you want your form:
+
+<form action="/addFriends" method="POST">
+     
+ <!--this newFriend attribute will contain the value added to the text box-->
+     
+ <input type="text" name="newFriend" placeholder="type name here..">
+       
+<button>I made a friend</button>
+      
+      
+  
+</forms>
+    
+
+
+install body parser package in order to extract the newly added name in the form:
+your post method will look like this:
+
+app.post("/addFriends",function(req,res){
+ 
+   
+//req.body will show undefined unless we install the body parser package and tell express
+   
+ //to explicitly convert req.body to a JS object.
+
+    
+ friends.push(req.body.newFriend);
+     
+//this will redirect us tot he friends apge everytime we add a new friend
+  
+    
+res.redirect("/friends");
+});
+
+
+
+APP.JS:
+var express=require("express");
+
+var app=express();
+
+//importing the body parser package and installing it inside a variable.
+
+var bodyParser=require("body-parser");
+
+
+//this tells express to use the body parser variable
+
+app.use(bodyParser.urlencoded({extended:true}));
+
+app.set("view engine","ejs");
+
+ 
+var friends=['tony','alihandro','badhrel','gadhrel'];
+
+
+
+app.get("/",function(req,res)
+{
+   res.render("home");
+});
+
+
+
+app.get("/friends",function(req,res)
+{
+ res.render("friends",{myFriends:friends});
+
+});
+
+
+
+app.post("/addFriends",function(req,res)
+{
+ friends.push(req.body.newFriend);
+     
+ res.redirect("/friends");
+
+});
+
+
+
+app.listen(process.env.PORT,process.env.IP,function()
+{
+    console.log("server started");
+});
+
+
+
+
+FRIENDS.EJS:
+<h1>My friends list</h1>
+
+
+
+<ul>
+ 
+ <% myFriends.forEach(function(frnd){%>
+        
+         
+ <li><%= frnd %> </li>  
+    
+    <%})%>
+   
+ 
+</ul>
+
+ 
+
+ <form action="/addFriends" method="POST">
+     
+ <!--this newFriend attribute will contain the value added to the text box-->
+ 
+    
+ <input type="text" name="newFriend" placeholder="type name here..">
+     
+  <button>I made a friend</button>
+      
+      
+ 
+ </forms>
+    

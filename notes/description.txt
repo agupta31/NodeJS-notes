@@ -1,0 +1,18 @@
+Started career as a jr web developer and have since transitioned to a full stack web developer.I have been 
+associated with projects in the banking as well as the health domain where I have extensively used  tehcnologies such
+as html,css,javascript,jquery,angular .js,react.js,bootstrap for UI development,mainly use node.js. as the server side langauge along
+data was storage was done using sql as well as no sql databse which depended on the scope of the project.
+In my recent projects i performed unit testing on my code using jasmine and karma testing tools.Almost all my projects
+used SVN and GIT for vesion control so I have hands on experience in using them as well as protractor for end to end
+testing.I have worked under the agile scrum development model were I interacted with clients on a regular basis.
+
+Project:Streamlined Banking
+Project was aimed at providing a smooth and streamlined online banking experiennce for the users.The different modules
+were account management,online bill payment,customer service and transaction management and loans & credit.
+I worked on account management and bill pay modules.
+unit testing-developed
+account managment-enables user to add an account or edit an existing account.
+
+
+
+spring mvc,and hibernate,core java and creating web services

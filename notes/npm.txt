@@ -1,0 +1,31 @@
+NODE PACKAGE MANAGER-allows us to install packages available in the node.js library
+
+HOW TO INSTALL A PACKAGE?
+
+use 'npm install' to install a package
+use 'require()' to include that package
+
+eq:
+app.js:
+
+var kn=require("knock-knock-jokes");
+
+
+console.log(kn());
+
+comandline:
+agupta31:~/workspace/introToNpm/demoApp $ npm install knock-knock-jokes
+
+knock-knock-jokes@1.7.0 node_modules/knock-knock-jokes
+
+agupta31:~/workspace/introToNpm/demoApp $ node app.js
+
+Knock, knock.
+
+Who’s there?
+
+Bed.
+
+Bed who?
+
+Bed you can not guess who I am.

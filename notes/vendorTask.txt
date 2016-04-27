@@ -1,0 +1,67 @@
+INDEX.HTM:
+<!doctype html>
+<!-- binding this entire html view to the variable myApp-->
+<html lang="en">
+<head>
+
+   <title>This is a javascript page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   
+         
+         
+</head>
+
+<body ng-app="tempApp" ng-controller="myController" >
+    
+    <input type="text" ng-model="temperature">
+    <button ng-click="addTemp()">Add</button>
+    <button ng-click="findMedian()">Get Median</button>
+         
+     
+         <div>{{median}}</div>
+
+   
+<script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.2/angular.js"></script>
+<script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.2/angular-route.min.js"></script>
+      
+<!--   <script type="text/javascript" src="https://code.angularjs.org/1.5.0-rc.2/angular-resource.min.js"></script>-->
+
+        <script type="text/javascript" src="app.js"></script>
+    
+</body>
+  
+</html>
+
+
+APP.JS:
+
+var myApp=angular.module("tempApp",[])
+
+
+myApp.service("myService",function(){
+    
+     this.items=[];
+});
+
+myApp.controller("myController",function($scope,myService){
+    
+    $scope.temperature="";
+    $scope.sum=0;
+
+    
+    $scope.addTemp=function(){
+        myService.items.push($scope.temperature);
+        $scope.temperature="";
+         
+     
+    }
+     
+    $scope.findMedian=function(){
+         
+           for(var i=0;i<myService.items.length;i++){
+               $scope.sum+=parseInt(myService.items[i]);     
+           }
+       //using closure the value of i is saved.
+        $scope.median= $scope.sum/i;
+    }
+});

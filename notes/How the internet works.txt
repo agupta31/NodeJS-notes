@@ -1,0 +1,36 @@
+http://www.udemy.com/courses-example of a typical http request
+
+www.udemy.com is the name of the server.
+
+courses refers to the data/page that we are looking for
+
+http: tells us that it is a http request
+
+
+First thing that happens when we type this in our browser is that the browser looks for the ip address
+of that server.www.udemy.com will have a specific ip adress such as 123.23.56.89. 
+
+After finding that address it tells the server that it wants some info regarding 'courses'.The server typically
+searches for that in the database and sends its response in a http response which is nothing but a combination
+of html,css and some javascript.
+
+This page then gets rendered to us on the browser.
+
+
+
+STATIC VS DYNAMIC WEBPAGES:
+
+STATIC-The server sends the same webpage everytime you send it a particular request.The data sent back is 
+the same.
+
+DYNAMIC:the server dynamically adds/removes/modifies content  on the fly and sends a different response
+everytime you sent it a request.Eg.the reddit page.Everytime it loads a different content. 
+
+
+
+DIFFERENT HTTP VERBS:
+GET-when we want to retrieve some data.
+POST-when we want to add some data to the database(eg..a form)
+PUT
+PATCH
+DELETE

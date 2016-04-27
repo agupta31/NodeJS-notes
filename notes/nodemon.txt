@@ -1,0 +1,6 @@
+in the terminal type:
+
+//this will prevent you from typing node app.js to start the server everytime.
+npm install nodemon -g
+nodemon app.js
+

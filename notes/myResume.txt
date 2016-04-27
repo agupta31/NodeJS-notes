@@ -1,0 +1,38 @@
+Redesigned the account management UI using HTML and CSS.
+Implemented javascript to make web pages more interactive and performed client side validations
+of sign up and log in modules.
+Used JSP as a server side language to communicate with the MYSQL database and retrieve information
+related to user accounts and power consumption.
+Implemented scrum based agile software development for analyzing,designing and developing applications.
+
+
+TECHNICAL SKILLS:
+Programming languages:C,java,C#,Sql
+web technologies:Javascript,Angular.js,Node.js,HTML/HTML5,CSS/CSS3,Bootstrap,jQuery,Ajax,underscore.js,
+semantic UI,mongoDb
+IDE's-Microsoft Visual Studio,sublime text editor,Adobe Brackets,Atom,Cloud9,eclipse,Visual studio code,
+Matlab
+
+
+PROJECTS:
+Built a browser based RGB color picker game from scratch which lets a user to guess a color from a set
+of randomly generated colors. Javascript,html,css
+
+Built a to-do list app where users can add/remove items emulating the functionality of windows sticky notes.
+jQuery,Html,CSS.Javascript
+
+Built a browser based weather app from scratch where users can check the weather of any city in the world 
+using angular .js API calls,custom services and custom directives.
+
+Built a contact list app where users can add/upate/delete/retrieve contact info .
+angular.js,node.js,mongo db,bootstrap.
+
+Built an end to end web application called yelp campgrounds which lets users choose camping places arround
+the world along with tons of other functionalities. Javascript,node.js,mongo db,passport.js,bootstrap,html,css,
+git.
+
+
+
+
+
+

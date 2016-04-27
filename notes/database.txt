@@ -1,0 +1,260 @@
+Database-help with data persisitance-data should be there even when the server is not running.
+
+->is used for collection/storage
+->has an interface(i.e a langauge which interacts with it):
+SQL(realtional database) vs NoSQL(non relational)
+
+RDMS:uses table structure
+
+NoSQL-object like data format-no tables:
+eq:
+
+  {
+    name:"Ira",
+    age:21,
+    city:"alabama",
+    comments:[
+              {text:"i just wanna have fun"},
+              {text:"i am a magical person"}
+     
+      ]
+    
+   }
+
+
+MONGO COMMANDS:
+mongod
+mongo
+help
+show dbs-> used to show database names.
+//
+use(db_name)->used to make a new database 
+insert
+//
+find-> db.foo.find()-lists colllections in object foo
+find-> db.foo.find({a:1})- lists collection in object foo where a==1
+//
+update->udpates a property
+eq:
+->db.dogs.find()
+
+{ "_id" : ObjectId("56fa9d4d20d6bd343c20e2d6"), "name" : "rusty", "breed" : "mutt" }
+
+{ "_id" : ObjectId("56fa9de220d6bd343c20e2d7"), "name" : "lucy", "breed" : "german shepard" }
+
+{ "_id" : ObjectId("56fa9e2520d6bd343c20e2d8"), "name" : "pluto", "breed" : "beagle" }
+
+->db.dogs.update({name:"lucy"}{breed:"dobberman"})//this overwrites the entire object with just the breed 
+property.
+
+->db.dogs.find()
+{ "_id" : ObjectId("56fa9d4d20d6bd343c20e2d6"), "name" : "rusty", "breed" : "mutt" }
+
+{ "_id" : ObjectId("56fa9de220d6bd343c20e2d7"),  "breed" : "dobberman" }
+
+{ "_id" : ObjectId("56fa9e2520d6bd343c20e2d8"), "name" : "pluto", "breed" : "beagle" }
+
+To avoid the above scenario we use:
+->db.dogs.update({name:"rusty"},{$set:{name:"tater",isCute:"true"}})
+
+remove
+db.dogs.remove({name:"pluto"})
+db.dogs.remove({name:"pluto"}).limit(1)//specifies the number of objects you want to delete.
+
+NOTE ON SHUTIING DOWN MONGO DB ON CLOUD 9 SERVER:
+CTRL+C
+
+
+
+MONGOOSE:
+elegant mongo db object for modelling for node.js:
+
+
+create folder called database-cna be outside your current working project
+add a .js file to it
+install mongoose package then open .js file and inlcude the following:
+
+var mongoose=require("mongoose");
+
+
+
+//connect to my database using mongoose
+
+
+
+mongoose.connect("mongodb://localhost/cat_app");
+
+
+//creating a schema for my cat_app collection
+
+var catSchema=mongoose.schema(
+ {
+  name:String,
+  age:Number,
+ temperament:String
+  });
+
+    
+    //we compiled our catSchema into a model and stored it into a variable cat.
+  
+  //so cat has the methods that we need to use.like cat.find()/cat.remove() etc.
+   
+
+ var cat=mongoose.model("cat",catSchema);
+
+
+
+//add new cat to the database
+
+  
+var george=new cat({
+ name:"hingshe beral",
+   age:5,
+  temperament:"good"});
+ 
+ //adding cats to the database
+ 
+  
+george.save(function(err,catData)
+{
+if(err)
+ 
+console.log("something went wrong");
+ 
+ else{
+  console.log("cat got saved in the database");
+             
+console.log(catData);
+ 
+}
+   });
+
+
+//retrieve all cats named 'hingshe beral'from the database
+
+   
+cat.find({name:"hingshe beral"},function(err,catData)
+{
+       if(err)
+  
+console.log("oh no error");
+    
+    else
+        
+ console.log(catData);
+  
+ })
+
+;
+
+
+ANOTHER WAY TO ADD A CAT OBJECT:
+//this creates as well as saves the cat obj in the database
+cat .create({name:"snow",age:12,temperament:"nice"},function(err,catData)
+{
+ 
+if(err)
+         
+console.log("error");
+   
+   else
+  
+  console.log(catData);
+ 
+  
+});
+
+
+
+ANOTHER EXAMPLE:
+
+var mongoose=require("mongoose");
+
+
+
+mongoose.connect("mongodb://localhost/movies_app");
+
+
+
+
+//creating a schema for movies_app database
+
+var movieSchema=mongoose.Schema({
+  name:String,
+  rating:Number,
+ Genre:String
+  
+});
+
+var movie=mongoose.model("movie",movieSchema);
+
+
+
+//creating movie objects inside my movies_app database
+
+  
+
+movie.create({
+ name:"hulchul",
+  rating:8.3,
+  genre:"comedy"
+  },
+  
+function(err,movieObj)
+{
+      if(err)
+  
+console.log("oh erorr");
+    
+else
+      
+console.log(movieObj);
+  
+});
+
+
+
+// data from the movie database
+
+
+movie.find({name:"hulchul"},function(err,movieObjs)
+{
+     if(err)
+  
+console.log("no such objects exists");
+     
+ else
+      
+console.log(movieObjs);
+
+});
+
+
+//updating my movie database
+
+
+movie.update({name:"gunday"},{$set:{name:"hulchul"}},{multi:true},function(err,movieObj)
+{
+   if(err)
+   
+console.log("error");
+          
+ else
+            
+console.log(movieObj);
+
+});
+
+//removal of data:
+
+movie.remove({name:"hulchul"},function(err,movieObj)
+{
+     if(err)
+     
+console.log("oh error");
+     
+else
+     
+console.log(movieObj);
+
+});

@@ -1,0 +1,142 @@
+USING IF STATEMENTS:
+
+APP.JS:
+var express=require("express");
+
+var app=express();
+
+
+app.get("/",function(req,res){
+  res.render("home.ejs");
+
+});
+
+
+
+app.get("/youfellinlovewith/:thing",function(req,res)
+{
+    var thing=req.params.thing;
+    res.render("love.ejs",{thingVar:thing})
+
+});
+
+
+
+app.listen(process.env.PORT,process.env.IP,function()
+{
+console.log("server started");
+})
+
+
+LOVE.EJS:
+
+<h1>You fell in love with <%=thingVar%></h1>
+
+
+
+<%if(thingVar.toLowerCase()==='rusty'){%>
+
+<p>Good choice</p>
+
+<% } 
+else {%>
+
+<p>very bad choice</p>
+<% } %>
+
+
+
+USING LOOPS:
+
+APP.JS:
+var express=require("express");
+
+var app=express();
+
+
+app.get("/",function(req,res){
+  res.render("home.ejs");
+
+});
+
+
+
+app.get("/youfellinlovewith/:thing",function(req,res)
+{
+    var thing=req.params.thing;
+    res.render("love.ejs",{thingVar:thing})
+
+});
+
+
+app.get("/posts",function(req,res)
+{
+ var posts=[
+  {title:"post1",author:"susy"},
+
+{title:"post2",author:"akash"},
+ 
+{title:"post3",author:"nadhrel"},
+ 
+{title:"post4",author:"badhrel"}
+]
+    
+    res.render("posts.ejs",{myPosts:posts});
+    
+
+});
+
+
+
+
+app.listen(process.env.PORT,process.env.IP,function()
+{
+console.log("server started");
+})
+
+
+
+POSTS.EJS:
+<h1>the posts that you want to see are:</h1>
+
+ 
+
+<% for(var i=0;i<myPosts.length;i++){%>
+ 
+      
+<p> <%=myPosts[i].title + ":"+ myPosts[i].author  %></p>
+
+ 
+<% } %>
+
+
+USING WHILE LOOP:
+POST.EJS:
+
+<h1>the posts that you want to see are:</h1>
+ 
+<% var i=0 %>
+ 
+<% while(i<myPosts.length){%>
+  
+<p> <%=myPosts[i].title + ":"+ myPosts[i].author  %></p>
+
+       <% i++ %>
+
+ <% } %>
+
+
+USING FOR EACH:
+
+ <% myPosts.forEach(function(post){%>
+   
+ <li>
+  
+<%=post.title%> - <strong><%= post.author%></strong>
+     
+  
+   
+  </li>
+        
+   
+ <%})%>

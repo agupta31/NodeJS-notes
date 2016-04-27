@@ -1,0 +1,99 @@
+HOW TO RENDER A EJS PAGE FORM YOUR APP.JS:USING ejs allows su to create dynamic content
+var express=require("express");
+
+var app=express();
+
+
+app.get("/",function(req,res)
+//this will render the page home.ejs which will coantian my html +JS
+{
+  res.render("home.ejs");
+})
+
+  
+
+app.get("/youfellinlovewith/:thing",function(req,res)
+{
+    var thing=req.params.thing;
+ 
+//this is how we pass a value that will be sued in my love.ejs file
+res.render("love.ejs",{thingVar:thing})
+
+})
+
+;
+
+app.listen(process.env.PORT,process.env.IP,function(){
+    console.log("server started");
+})
+
+HOME.EJS:
+<div>
+    
+    
+<h1>This is a list</h1>
+    
+<ul>
+        
+<li>Do resume</li>
+        
+<li>Study node.js</li>
+        
+<li>complete angular assignment</li>
+        
+        
+   
+ </ul>
+    
+    
+
+</div>
+
+
+LOVE.EJS:
+//this is how <%=> we embed js inside html
+<h1>You fell in love with <%=thingVar%></h1>
+
+
+
+
+EXAMPLE 2:
+APP.JS:
+var express=require("express");
+
+var app=express();
+
+
+app.get("/",function(req,res){
+res.render("home.ejs");
+
+});
+
+
+app.get("/calculator/:a/:b",function(req,res)
+{
+ var a=parseInt(req.params.a);
+
+    var b=parseInt(req.params.b);
+      
+res.render("calculate.ejs",{varA:a,varB:b});
+
+});
+
+
+app.listen(process.env.PORT,process.env.IP,function()
+{
+    console.log("server started");
+
+});
+
+
+VIEWS:
+
+HOME.EJS:
+<h1>welcome to the home page</h1>
+
+CALCULATE.EJS:
+<h1>the sum calculator</h1>
+
+<p>The sum you calculated is: <%=(varA)+(varB) %> </p>

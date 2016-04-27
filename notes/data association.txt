@@ -1,0 +1,145 @@
+Associating one form of data to another.
+types:
+one:one
+one:many
+many:many
+
+embedding data:
+a user having many posts
+
+
+var mongoose=require("mongoose");
+mongoose.connect("mongodb://localhost/blog_demo");
+
+
+//CREATING A POST SCHEMA
+var postSchema=mongoose.Schema(
+{
+    title:String,
+    content:String
+}
+);
+
+
+//CREATING A USER SCHEMA
+var userSchema=mongoose.Schema(
+{
+  name:String,
+  
+email:String,
+  
+posts:[postSchema]//we are including a property posts which is an array and whose schema will same as the 
+postSchema
+
+ });
+
+var User=mongoose.model("User",userSchema);
+
+
+var postModel=mongoose.model("Post",postSchema);
+
+
+
+//CREATING A USER:
+User.create({
+      name:"akash gupta",
+      email:"akash2989@gmail.com"
+      
+
+},function(err,data){
+    if(err)
+      console.log(err);
+   else
+       console.log(data);
+    
+});
+
+
+//ADDING POSTS TO THE USER akash gupta:
+
+postModel.create(  
+{
+   title:"bootstrap",
+
+   content:"bootstrap makes you dumb"
+ 
+},
+function(err,postData)
+{
+ if(err)
+ 
+ console.log(err);
+ 
+    
+         else{
+    
+             User.findOne({name:"akash gupta"},
+             function(err,userData){
+ 
+                 if(err)
+ 
+                    console.log(err);  
+                       else{
+ 
+                          userData.posts.push(postData);
+ 
+                         userData.save(function(err,newData)
+                                    {
+ if(err)
+   
+                                         console.log(err);  
+                                               else
+    
+                                               console.log(newData);
+ 
+                                        });
+
+                  
+                  }
+    
+                               });
+                               
+              
+                        }
+            
+
+     });
+                            
+
+
+
+
+DATA ASSOCIATION USING OBEJCT REFERENCE:
+Same code as above:only add these lines:
+
+var userSchema=mongoose.Schema(
+{
+  name:String,
+ 
+   email:String,
+
+    posts:[
+   
+         {
+ type:mongoose.Schema.Types.ObjectId,
+ 
+          ref:"Post"
+ 
+         }
+         
+         
+ ]
+
+});
+
+User.findOne({email:"ali34@gmail.com"}).populate("posts").exec(function(err,user)
+{
+    if(err)
+ 
+console.log(err);
+   
+ else
+      
+ console.log(user);    
+
+});

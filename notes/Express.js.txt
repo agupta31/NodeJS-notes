@@ -1,0 +1,94 @@
+What is express.js? -it is a web development framework.
+
+What so the difference between a framework and a library?
+A framework is a bunch of code which you use that someone else has written for you much like a library.
+However,unlike a library we have less control of a framework and we use to develop applications fast.
+
+
+ROUTING USING EXPRESS:
+ var express=require("express");//so variable express now contains all the contents of the 'express 'directory
+ 
+var app=express();//saving it to a variable called app.js
+ 
+ 
+// '/'='hi there'
+ //this is how we define routing
+ 
+//the first param defines the route and the second is a callback function which takes
+// a request and response object
+
+app.get("/",function(req,res)
+{
+  res.send("hi from express"});
+ 
+
+
+//  '/hello'='hello world'
+ 
+ 
+app.get("/hello",function(req,res)
+{
+ res.send("hello hello heloo is anybody in there?")
+   })
+ 
+ 
+//  '/bye'="goodbye brother"
+ 
+app.get("/bye",function(req,res)
+{
+  res.send("goodbye crazy ass ");
+ })
+
+ 
+
+ 
+ 
+//tell express to listen for requests(start server)
+ 
+
+ app.listen(process.env.PORT,process.env.IP,function(){
+ console.log("server started");
+ });
+
+
+
+#NPM Init and Package.json:
+
+Package.json-containsa bunch of metadata about a particualr application or package.
+'npm init' helps us create a new package.json file:
+fill in the questions in the terminal and a new package.json file will be created for you.Howver,this
+file won't have the dependency property.In roder to do that you use: npm install 'package name' --save
+
+after this the pakage.json file will look like this:
+{
+  "name": "packagejsondemo",
+  
+"version": "1.0.0",
+ 
+ "description": "simple package.json demo",
+  
+"main": "app.js",
+  
+
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  
+"author": "akash",
+  
+"license": "ISC",
+  
+"dependencies":
+ {
+ "cat-me": "^1.0.2",
+    //to add this we wrote  npm install cat-me --save(this automatically got added
+                          //to the dependency property
+"express": "^4.13.4",
+    
+"faker": "^3.1.0"
+  }
+}
+
+
+in short we use --save to save the package that we are installing to 
+the dependency property of the package.json file.

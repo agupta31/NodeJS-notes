@@ -1,0 +1,23 @@
+PROCESS:
+npm init -creates package.json
+npm install express ejs body-parser mongoose --save
+
+folder structure :
+
+workspace:
+     restfullRouting:
+               blogApp:
+                  node_modules
+                  views--> 
+                          home.ejs
+                          route1.ejs
+                        partials-->
+                           header.ejs
+                           footer.ejs
+                  public-->
+                          app.css
+                          front end JS files also go here.
+                  app.js
+                  package.json
+
+

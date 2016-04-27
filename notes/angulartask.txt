@@ -1,0 +1,71 @@
+ <a href="jasmine-test-runner.html">Run Unit Tests</a>
+ 
+ <div class="container" ng-controller="mainController">
+    
+<h1>Temperature Monitor</h1>
+    <form ng-submit='submitted=true; recordTemperature();' name="myForm">
+  
+   
+ <label for="temperature">Add Temperture:</label>
+     
+ <input name="temperature" id="temperature" ng-model="newTemperature">
+     
+ <button class="btn btn-success" type="submit">Add</button>
+     
+ <button class="btn btn-primary" ng-click="startOver">Start over</button>
+   
+ </form>
+    <ul>
+      <li ng-repeat="item in items">{{item.temperature}}</li>
+    
+</ul>
+ 
+</div>
+  <script src="https://code.angularjs.org/1.3.5/angular.js"></script>
+  
+<script src="app.js"></script>
+
+
+
+var mainApp = angular.module("mainApp", []);
+
+
+
+mainApp.factory('TemperatureMonitor', function()
+
+{
+  return
+{
+    recordTemperature: function(items,newTemperature)
+{
+      items.push({
+     temperature: newTemperature
+      });
+     
+ console.log(newTemperature);
+    }
+  };
+
+})
+
+
+
+mainApp.controller('mainController', function($scope, TemperatureMonitor)
+{
+  "use strict";
+ 
+
+ $scope.items = [];
+ 
+ $scope.addTemperature = function($scope.items, $scope.newTemperature){
+   
+ if($scope.myForm.$valid){
+      TemperatureMonitor.recordTemperature();
+   
+ }else{
+      
+alert('invalid form');
+  
+  }
+  }
+});

@@ -1,0 +1,108 @@
+USING * :
+
+app.get("/",function(req,res)
+{
+  res.send("hi from express"});
+ 
+
+
+//  '/hello'='hello world'
+ 
+ 
+app.get("/hello",function(req,res)
+{
+ res.send("hello hello heloo is anybody in there?")
+   })
+ 
+ 
+//  '/bye'="goodbye brother"
+ 
+app.get("/bye",function(req,res)
+{
+  res.send("goodbye crazy ass ");
+ })
+
+ 
+
+
+//this will be triggered if the user goes to any other routes apart from the ones specified above
+
+app.get("*",function(req,res)
+{
+ res.send("you are a star.You are here because you typed the wrong address");
+})
+ 
+
+
+//tell express to listen for requests(start server)
+ 
+
+ app.listen(process.env.PORT,process.env.IP,function(){
+ console.log("server started");
+ });
+
+
+ORDER OF THE ROUTES MATTER:EXPRESS checks the routes in order and if finds a match it doesn't go to the
+next route.
+eq:
+
+//if this is moved to the first then we will get its corressponding msg displayed no matter what routes
+//we traverse to.
+app.get("*",function(req,res)
+{
+ res.send("you are a star.You are here because you typed the wrong address");
+})
+ 
+ 
+
+
+ app.get("/",function(req,res)
+{
+  res.send("hi from express"});
+ 
+
+
+
+app.get("/hello",function(req,res)
+{
+ res.send("hello hello heloo is anybody in there?")
+   })
+ 
+ 
+
+app.get("/bye",function(req,res)
+{
+  res.send("goodbye crazy");
+ })
+
+ 
+
+
+
+
+
+
+USING ROUTE PARAMS TO DEFINE ROUTE PATTERNS:
+in real time web applications we use this technique in order to reduce the number of get requests.
+
+we use a route pattern based on which the get request fetches data:
+
+eq in the reddit home page we can write:
+app.get("/r/subredditname/comments/id/title")-this is a route pattern
+
+we define it like this:
+app.get("/r/:subredditname",function(req,res){
+    res.send("hi welcome to the world of route params");
+
+});
+
+another example:
+//anything after the colon is just a placeholder for literally any character you type in.However,comments 
+//has to written as comments here.
+
+app.get("/r/:subredditname/comments/:id/:title",function(req,res)
+{
+
+res.send("you are here because you want to view comments on a specific title");
+});
+ 
